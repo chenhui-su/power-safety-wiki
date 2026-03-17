@@ -1,0 +1,59 @@
+# Gitee Go 流水线配置
+# 文档: https://gitee.com/help/articles/4295
+
+name: deploy-docs
+
+# 触发条件
+on:
+  push:
+    branches:
+      - main
+
+# 全局变量
+variables:
+  PYTHON_VERSION: "3.11"
+
+# 任务定义
+stages:
+  - name: build-and-deploy
+    jobs:
+      - name: build
+        runs-on: ubuntu-latest
+        steps:
+          # 检出代码
+          - name: Checkout
+            uses: actions/checkout@v3
+            with:
+              fetch-depth: 0  # 获取完整历史（git-revision-date 插件需要）
+
+          # 设置 Python
+          - name: Setup Python
+            uses: actions/setup-python@v4
+            with:
+              python-version: ${{ variables.PYTHON_VERSION }}
+
+          # 缓存依赖
+          - name: Cache pip
+            uses: actions/cache@v3
+            with:
+              path: ~/.cache/pip
+              key: pip-${{ hashFiles('requirements.txt') }}
+
+          # 安装依赖
+          - name: Install dependencies
+            run: |
+              pip install --upgrade pip
+              pip install -r requirements.txt
+
+          # 构建站点
+          - name: Build site
+            run: mkdocs build
+
+          # 部署到 Gitee Pages
+          # 注意：Gitee Pages 需要手动开启，或使用 gitee-pages-action
+          - name: Deploy
+            uses: peaceiris/actions-gh-pages@v3
+            with:
+              gitee_token: ${{ secrets.GITEE_TOKEN }}
+              publish_dir: ./site
+              publish_branch: gh-pages

@@ -1,0 +1,101 @@
+site_name: 电力系统大停电事故案例库
+site_description: 电力系统安全分析领域权威知识平台 - 上海交通大学 130 周年校庆献礼
+site_author: 上海交通大学电力系统安全研究团队
+site_url: https://ch_su.gitee.io/power-safety-wiki/
+
+# 主题配置
+theme:
+  name: material
+  language: zh
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: amber
+      toggle:
+        icon: material/brightness-7
+        name: 切换至深色模式
+    - scheme: slate
+      primary: indigo
+      accent: amber
+      toggle:
+        icon: material/brightness-4
+        name: 切换至浅色模式
+  features:
+    - navigation.tabs           # 顶部标签导航
+    - navigation.sections       # 侧边栏分组
+    - navigation.expand         # 自动展开
+    - navigation.top            # 返回顶部按钮
+    - search.suggest            # 搜索建议
+    - search.highlight          # 搜索高亮
+    - content.tabs.link         # 内容标签联动
+    - content.code.copy         # 代码复制按钮
+  icon:
+    repo: fontawesome/brands/git-alt
+
+# 仓库信息
+repo_name: power-safety-wiki
+repo_url: https://gitee.com/ch_su/power-safety-wiki
+edit_uri: edit/main/docs/
+
+# 导航结构
+nav:
+  - 首页: index.md
+  - 事故案例:
+    - 案例索引: incidents/index.md
+    - 北美地区:
+      - 2003年美加大停电: incidents/2003-us-canada/index.md
+      - 1965年美国东北大停电（待收录）: incidents/1965-us-northeast/index.md
+    - 欧洲地区:
+      - 2003年意大利大停电（待收录）: incidents/2003-italy/index.md
+      - 2006年欧洲大停电（待收录）: incidents/2006-europe/index.md
+    - 亚洲地区:
+      - 2012年印度大停电（待收录）: incidents/2012-india/index.md
+  - 关于: about.md
+
+# Markdown 扩展
+markdown_extensions:
+  - admonition                  # 警告框
+  - pymdownx.details            # 可折叠块
+  - pymdownx.superfences        # 代码块增强
+  - pymdownx.tabbed:            # 内容标签
+      alternate_style: true
+  - pymdownx.emoji:             # Emoji 支持
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - tables                      # 表格
+  - toc:                        # 目录
+      permalink: true
+      toc_depth: 3
+  - attr_list                   # 属性列表
+  - md_in_html                  # HTML 中的 Markdown
+
+# 插件
+plugins:
+  - search:
+      lang:
+        - zh
+        - en
+  - tags                        # 标签系统
+  - minify:                     # 压缩 HTML/JS/CSS
+      minify_html: true
+  - git-revision-date-localized:  # 显示最后更新时间
+      type: date
+      timezone: Asia/Shanghai
+      locale: zh
+      enable_creation_date: true
+
+# 额外配置
+extra:
+  social:
+    - icon: fontawesome/brands/weixin
+      link: https://mp.weixin.qq.com/s/your-article
+      name: 公众号「AI的尽头是电力」
+  generator: false              # 隐藏 MkDocs 生成信息
+
+# 自定义 CSS
+extra_css:
+  - assets/css/custom.css
+
+# 版权信息
+copyright: Copyright &copy; 2024-2026 上海交通大学 | 校庆 130 周年献礼项目
+

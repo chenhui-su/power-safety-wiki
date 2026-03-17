@@ -1,0 +1,28 @@
+# Pre-commit hooks 配置
+# 安装: pre-commit install
+# 手动运行: pre-commit run --all-files
+
+repos:
+  # 通用检查
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace        # 删除行尾空格
+        args: [--markdown-linebreak-ext=md]
+      - id: end-of-file-fixer          # 确保文件以换行结尾
+      - id: check-yaml                 # 检查 YAML 语法
+      - id: check-added-large-files    # 防止提交大文件
+        args: ['--maxkb=1024']
+      - id: check-merge-conflict       # 检查合并冲突标记
+      - id: mixed-line-ending          # 统一换行符
+        args: ['--fix=lf']
+
+  # Markdown 检查
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.39.0
+    hooks:
+      - id: markdownlint
+        args: ['--fix', '--disable', 'MD013', 'MD033', 'MD041', '--']
+        # MD013: 行长度（中文文档不适用）
+        # MD033: 允许内联 HTML（视频嵌入需要）
+        # MD041: 允许首行非标题

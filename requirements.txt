@@ -1,0 +1,15 @@
+# MkDocs 核心及 Material 主题
+mkdocs>=1.6.0
+mkdocs-material>=9.5.0
+
+# 推荐插件
+mkdocs-minify-plugin>=0.8.0      # HTML/JS/CSS 压缩，提升加载速度
+mkdocs-git-revision-date-localized-plugin>=1.2.0  # 显示页面最后更新时间
+mkdocs-awesome-pages-plugin>=2.9.0  # 更灵活的导航配置
+
+# 可选插件（按需启用）
+# mkdocs-pdf-export-plugin>=0.5.0  # PDF 导出
+# mkdocs-mermaid2-plugin>=1.1.0    # Mermaid 图表增强
+
+# 开发工具
+pre-commit>=3.6.0               # Git hooks 管理

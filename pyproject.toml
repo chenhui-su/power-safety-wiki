@@ -1,0 +1,31 @@
+[project]
+name = "power-safety-wiki"
+version = "1.0.0"
+description = "电力系统大停电事故案例库 - 上海交通大学130周年校庆献礼"
+readme = "README.md"
+license = {text = "CC-BY-NC-SA-4.0"}
+requires-python = ">=3.10"
+authors = [
+    {name = "SJTU Power Safety Team"}
+]
+keywords = ["power system", "blackout", "case study", "mkdocs"]
+
+dependencies = [
+    "mkdocs>=1.6.0",
+    "mkdocs-material>=9.5.0",
+    "mkdocs-minify-plugin>=0.8.0",
+    "mkdocs-git-revision-date-localized-plugin>=1.2.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pre-commit>=3.6.0",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
+ignore = ["E501"]
