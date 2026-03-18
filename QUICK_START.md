@@ -322,7 +322,9 @@ git push origin main
 
 1. 当前仓库权限仅开放给技术组，内容创作者不直接提交仓库。
 2. 上线前必须确认视频链接可访问、页面预览正常。
-3. 提交信息建议使用 `feat:` 前缀并写明事故主题。
+3. 本地仅使用 `mkdocs serve` 预览，不在本地执行 `mkdocs build`。
+4. 构建与部署由 GitHub CI 完成，避免本地产生 `site/` 并污染 `main` 分支。
+5. 提交信息建议使用 `feat:` 前缀并写明事故主题。
 
 ---
 
@@ -359,8 +361,6 @@ power-safety-wiki/
 |------|------|
 | `mkdocs serve` | 启动本地预览 |
 | `mkdocs serve -a 0.0.0.0:8080` | 使用 8080 端口（8000 被占用时） |
-| `mkdocs build` | 构建静态网站 |
-| `mkdocs build --clean` | 清理旧文件后重新构建（提交前推荐） |
 | `git status` | 查看修改状态 |
 | `git add .` | 添加所有修改 |
 | `git commit -m "消息"` | 提交修改 |
@@ -389,25 +389,17 @@ mkdocs serve -a 0.0.0.0:8080
 
 > 说明：`0.0.0.0` 会监听所有网卡，只在可信网络环境下使用。
 
-#### `mkdocs build`：生成发布文件
+#### `mkdocs build`：由 GitHub CI 执行（本地不执行）
 
-- 用途：把 `docs/` 内容构建为静态网站，输出到 `site/` 目录
-- 典型场景：提交前检查、CI/CD 发布前验证
-- 常用写法：
-
-```bash
-# 普通构建
-mkdocs build
-
-# 先清理旧文件再构建（推荐）
-mkdocs build --clean
-```
+- 当前协作流程下，技术组本地仅做 `serve` 预览
+- `build` 与部署在 GitHub CI 中完成
+- 这样可避免本地产生 `site/` 内容并误提交到 `main` 分支
 
 #### 8.2 推荐工作流（最实用）
 
 1. 日常编辑时保持 `mkdocs serve` 运行，边改边看效果。
-2. 准备提交前执行 `mkdocs build --clean`，确认构建无报错。
-3. 构建通过后再执行 `git add/commit/push`。
+2. 预览确认无误后，直接执行 `git add/commit/push`。
+3. 由 GitHub CI 自动完成构建与部署验证。
 
 ---
 
@@ -419,6 +411,7 @@ mkdocs build --clean
 | 虚拟环境激活失败 | PowerShell 执行策略问题，见第五节 |
 | pip 安装超时 | 使用清华镜像：`-i https://pypi.tuna.tsinghua.edu.cn/simple` |
 | 8000 端口被占用 | 使用 `mkdocs serve -a 0.0.0.0:8080` |
+| 不小心在本地 build 了 | 删除本地 `site/` 目录，不要提交；后续仅使用 `mkdocs serve` |
 | git push 被拒绝 | 确认是否属于技术组仓库维护成员且权限已开通 |
 | 中文文件名乱码 | `git config --global core.quotepath false` |
 
