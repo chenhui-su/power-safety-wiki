@@ -16,11 +16,11 @@
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│  步骤1        步骤2        步骤3        步骤4        步骤5        步骤6     │
-│  ↓            ↓            ↓            ↓            ↓            ↓         │
-│ 安装         安装          安装         克隆         配置          运行      │
-│ Python  →    Git     →    VS Code  →   项目    →   环境     →   预览      │
-│ (10分钟)    (5分钟)       (5分钟)      (2分钟)     (5分钟)       (3分钟)    │
+│  步骤1      步骤2      步骤3      步骤4      步骤5      步骤6      步骤7   │
+│  ↓          ↓          ↓          ↓          ↓          ↓          ↓       │
+│ 安装       安装        安装       注册       克隆       配置        运行    │
+│ Python →   Git   →    VS Code →  Gitee并申请 → 项目 →  环境   →    预览    │
+│ (10分钟)  (5分钟)     (5分钟)    (3分钟)    (2分钟)   (5分钟)     (3分钟)   │
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -172,7 +172,14 @@ git config --global core.quotepath false
 
 ## 五、克隆并运行项目
 
-### 5.1 创建工作目录
+### 5.1 注册 Gitee 账号并申请仓库权限（先做）
+
+1. 访问 https://gitee.com/signup 注册 Gitee 账号
+2. 将你的 Gitee 用户名发给苏晨辉
+3. 申请加入仓库 `https://gitee.com/ch_su/power-safety-wiki`，角色为**仓库管理员**或**开发者**
+4. 收到已加入仓库通知后，再继续下面的克隆步骤
+
+### 5.2 创建工作目录
 
 ```bash
 # Windows (在 PowerShell 或 CMD 中)
@@ -184,14 +191,14 @@ mkdir -p ~/Projects
 cd ~/Projects
 ```
 
-### 5.2 克隆项目
+### 5.3 克隆项目
 
 ```bash
 git clone https://gitee.com/ch_su/power-safety-wiki.git
 cd power-safety-wiki
 ```
 
-### 5.3 创建虚拟环境
+### 5.4 创建虚拟环境
 
 ```bash
 # Windows
@@ -201,7 +208,7 @@ python -m venv .venv
 python3 -m venv .venv
 ```
 
-### 5.4 激活虚拟环境
+### 5.5 激活虚拟环境
 
 **⚠️ 每次打开新终端都需要执行这一步！**
 
@@ -232,7 +239,7 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 # 输入 Y 确认
 ```
 
-### 5.5 安装依赖
+### 5.6 安装依赖
 
 ```bash
 # 确保虚拟环境已激活（命令行前有 .venv）
@@ -247,7 +254,7 @@ pip install -r requirements.txt
 pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
 ```
 
-### 5.6 启动预览
+### 5.7 启动预览
 
 ```bash
 mkdocs serve
@@ -354,7 +361,7 @@ power-safety-wiki/
 | 虚拟环境激活失败 | PowerShell 执行策略问题，见第五节 |
 | pip 安装超时 | 使用清华镜像：`-i https://pypi.tuna.tsinghua.edu.cn/simple` |
 | 8000 端口被占用 | 使用 `mkdocs serve -a 0.0.0.0:8080` |
-| git push 被拒绝 | 检查是否有仓库权限，联系技术组 |
+| git push 被拒绝 | 确认是否已由苏晨辉添加为仓库管理员或开发者 |
 | 中文文件名乱码 | `git config --global core.quotepath false` |
 
 ---
@@ -384,6 +391,7 @@ power-safety-wiki/
 
 - [ ] `python --version` 显示 3.10.x 或 3.11.x
 - [ ] `git --version` 显示版本号
+- [ ] 已完成 Gitee 账号注册，并已被添加为仓库管理员或开发者
 - [ ] 项目已克隆到本地
 - [ ] 虚拟环境可以正常激活（命令行前有 `.venv`）
 - [ ] `mkdocs --version` 显示版本号
