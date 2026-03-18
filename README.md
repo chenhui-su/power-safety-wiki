@@ -28,12 +28,12 @@
 
 ### 在线访问
 
-访问网站：[https://ch_su.gitee.io/power-safety-wiki/](https://ch_su.gitee.io/power-safety-wiki/)
+访问网站：[https://chenhui-su.github.io/power-safety-wiki/](https://chenhui-su.github.io/power-safety-wiki/)
 
 ### 本地预览
 
-**内部协作人员（有仓库权限）**：请阅读 [QUICK_START.md](QUICK_START.md) 完成环境配置。  
-**内部普通贡献者**：请阅读 [getting-started.md](getting-started.md) 了解内容撰写与提交流程。
+**技术组成员（仓库维护 / 部署）**：请阅读 [QUICK_START.md](QUICK_START.md) 完成环境配置与仓库操作。  
+**内容创作者（无仓库权限）**：请阅读 [getting-started.md](getting-started.md) 完成内容撰写、预览截图与素材打包提审。
 
 #### 一键启动（推荐）
 
@@ -68,16 +68,18 @@ mkdocs serve
 
 ## 🤝 参与贡献
 
-我们欢迎所有对电力系统安全感兴趣的同学参与贡献！
+我们欢迎所有对电力系统安全感兴趣的同学参与内容贡献！
 
 > 🔒 当前阶段暂未开放外部编辑，贡献流程面向网站内部人员。
 
 1. 📖 阅读 [贡献指南](CONTRIBUTING.md)
 2. 🎯 在「贡献记录表」中认领事故主题
-3. 📝 按模板撰写内容
-4. 📤 提交审核
+3. 📝 本地完成案例文档，并使用 `mkdocs serve` 预览后截图
+4. 🎬 使用 NotebookLM 生成分析视频
+5. 📦 将 `项目文件 + 预览截图 + 视频文件` 打包提交内容组审核
+6. ✅ 内容组审核通过后，由技术组完成视频上传、页面入库与部署
 
-> 💡 **无需编程经验**：你只需要编写 Markdown 文件，内容组和技术组会协助完成剩余工作。
+> 💡 **无需编程经验**：你只需要完成内容撰写与素材打包，内容组和技术组会协助完成审核与上线。
 
 详见 👉 [CONTRIBUTING.md](CONTRIBUTING.md)
 
