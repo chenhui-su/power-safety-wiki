@@ -1,0 +1,26 @@
+{
+  "recommendations": [
+    // Markdown 支持
+    "yzhang.markdown-all-in-one",       // Markdown 增强（快捷键、预览、TOC）
+    "bierner.markdown-mermaid",         // Mermaid 图表预览
+    "davidanson.vscode-markdownlint",   // Markdown 语法检查
+
+    // YAML 支持
+    "redhat.vscode-yaml",               // YAML 语法高亮和验证
+
+    // Git 相关
+    "eamodio.gitlens",                  // Git 增强
+    "mhutchie.git-graph",               // Git 图形化
+
+    // 通用工具
+    "editorconfig.editorconfig",        // EditorConfig 支持
+    "streetsidesoftware.code-spell-checker", // 拼写检查
+
+    // 中文支持
+    "streetsidesoftware.code-spell-checker-chinese-simplified", // 中文拼写
+
+    // AI 助手（可选，建议二选一）
+    "saoudrizwan.claude-dev",          // Cline
+    "openai.chatgpt"                   // Codex（OpenAI）
+  ]
+}

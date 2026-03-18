@@ -155,18 +155,36 @@ git config --global core.quotepath false
 
 ### 推荐扩展
 
-打开 VS Code，按 `Ctrl+Shift+X` 打开扩展面板，搜索并安装：
+打开 VS Code，按 `Ctrl+Shift+X` 打开扩展面板，搜索并安装。  
+本仓库的推荐插件清单维护在 `.vscode/extensions.json`，打开项目后可按 VS Code 提示一键安装。
 
 ```
-必装：
+基础推荐（与 .vscode/extensions.json 同步）：
 - Chinese (Simplified) Language Pack   # 中文界面
 - Markdown All in One                   # Markdown 编辑
-- YAML                                  # YAML 语法支持
-
-推荐：
-- GitLens                               # Git 增强
+- Markdown Mermaid                      # Mermaid 图表预览
 - markdownlint                          # Markdown 语法检查
+- YAML                                  # YAML 语法支持
+- GitLens                               # Git 增强
+- Git Graph                             # Git 图形化
+- EditorConfig for VS Code             # 编辑器风格统一
+- Code Spell Checker                    # 英文拼写检查
+- Code Spell Checker Chinese            # 中文拼写检查
 ```
+
+### AI 辅助插件（可选，建议二选一）
+
+- Cline（插件 ID：`saoudrizwan.claude-dev`）
+  - 商店页：https://marketplace.visualstudio.com/items?itemName=saoudrizwan.claude-dev
+  - 安装教程：https://docs.cline.bot/getting-started/installing-cline
+  - 配置教程（授权与模型选择）：https://docs.cline.bot/getting-started/authorizing-with-cline
+- CodeX / Codex（插件 ID：`openai.chatgpt`，商店名称为 “Codex – OpenAI’s coding agent”）
+  - 商店页：https://marketplace.visualstudio.com/items?itemName=openai.chatgpt
+  - 安装教程：https://developers.openai.com/codex/ide
+  - 配置教程（认证与设置）：
+    - https://developers.openai.com/codex/auth
+    - https://developers.openai.com/codex/ide/settings
+  - 截至 2026年3月18日，官方文档说明 Windows 下建议结合 WSL 使用以获得更好体验
 
 ---
 
@@ -344,12 +362,54 @@ power-safety-wiki/
 | `mkdocs serve` | 启动本地预览 |
 | `mkdocs serve -a 0.0.0.0:8080` | 使用 8080 端口（8000 被占用时） |
 | `mkdocs build` | 构建静态网站 |
+| `mkdocs build --clean` | 清理旧文件后重新构建（提交前推荐） |
 | `git status` | 查看修改状态 |
 | `git add .` | 添加所有修改 |
 | `git commit -m "消息"` | 提交修改 |
 | `git pull` | 拉取远程更新 |
 | `git push` | 推送本地修改 |
 | `Ctrl + C` | 停止 mkdocs serve |
+
+### 8.1 MkDocs 命令详解
+
+#### `mkdocs serve`：本地实时预览
+
+- 用途：启动本地开发服务器，修改 `docs/` 或 `mkdocs.yml` 后自动刷新页面
+- 默认地址：`http://localhost:8000`
+- 常用写法：
+
+```bash
+# 默认本地预览（最常用）
+mkdocs serve
+
+# 改端口（8000 被占用时）
+mkdocs serve -a 127.0.0.1:8080
+
+# 局域网联调（同网段其他设备可访问）
+mkdocs serve -a 0.0.0.0:8080
+```
+
+> 说明：`0.0.0.0` 会监听所有网卡，只在可信网络环境下使用。
+
+#### `mkdocs build`：生成发布文件
+
+- 用途：把 `docs/` 内容构建为静态网站，输出到 `site/` 目录
+- 典型场景：提交前检查、CI/CD 发布前验证
+- 常用写法：
+
+```bash
+# 普通构建
+mkdocs build
+
+# 先清理旧文件再构建（推荐）
+mkdocs build --clean
+```
+
+#### 8.2 推荐工作流（最实用）
+
+1. 日常编辑时保持 `mkdocs serve` 运行，边改边看效果。
+2. 准备提交前执行 `mkdocs build --clean`，确认构建无报错。
+3. 构建通过后再执行 `git add/commit/push`。
 
 ---
 
@@ -420,4 +480,3 @@ power-safety-wiki/
 ---
 
 *本文档由技术组维护，如有建议请反馈*
-
