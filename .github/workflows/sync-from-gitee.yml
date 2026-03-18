@@ -1,0 +1,30 @@
+name: Sync from Gitee
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/15 * * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-from-gitee
+  cancel-in-progress: true
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Mirror clone from Gitee (public repo)
+        run: |
+          git clone --mirror https://gitee.com/ch_su/power-safety-wiki.git repo.git
+
+      - name: Push mirror to GitHub
+        env:
+          GH_REPO: ${{ github.repository }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cd repo.git
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${GH_REPO}.git"
+          git push --mirror
