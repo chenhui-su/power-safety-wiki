@@ -125,7 +125,7 @@ timeline
 ---
 
 <div style="text-align: center; margin-top: 3rem;">
-  <img src="https://www.sjtu.edu.cn/images/logo.png" alt="上海交通大学" width="200">
+  <img src="https://vi.sjtu.edu.cn/uploads/files/caf2f5045c47308250fab3812dfe2003-6896b91594f238b24e67696224948251.png" alt="上海交通大学" width="200">
   <p style="margin-top: 1rem; color: #666;">
     献礼上海交通大学 130 周年校庆<br>
     2026年4月6日

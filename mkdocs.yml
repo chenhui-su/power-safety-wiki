@@ -1,7 +1,7 @@
 site_name: 电力系统大停电事故案例库
 site_description: 电力系统安全分析领域权威知识平台 - 上海交通大学 130 周年校庆献礼
 site_author: 上海交通大学电力系统安全研究团队
-site_url: https://ch_su.gitee.io/power-safety-wiki/
+site_url: https://chenhui-su.github.io/power-safety-wiki/
 
 # 主题配置
 theme:
