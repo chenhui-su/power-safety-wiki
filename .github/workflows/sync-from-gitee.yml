@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: write
+  actions: write
 
 concurrency:
   group: sync-from-gitee
@@ -20,11 +21,30 @@ jobs:
         run: |
           git clone --mirror https://gitee.com/ch_su/power-safety-wiki.git repo.git
 
-      - name: Push mirror to GitHub
+      - name: Push main to GitHub
+        id: sync_main
         env:
           GH_REPO: ${{ github.repository }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           cd repo.git
           git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${GH_REPO}.git"
-          git push --mirror
+          PUSH_OUTPUT="$(git push origin +refs/heads/main:refs/heads/main 2>&1)" || { echo "$PUSH_OUTPUT"; exit 1; }
+          echo "$PUSH_OUTPUT"
+          if echo "$PUSH_OUTPUT" | grep -q "Everything up-to-date"; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Trigger deploy workflow
+        if: steps.sync_main.outputs.changed == 'true'
+        env:
+          GH_REPO: ${{ github.repository }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          curl -fsSL -X POST \
+            -H "Authorization: Bearer ${GH_TOKEN}" \
+            -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/${GH_REPO}/actions/workflows/deploy-gh-pages.yml/dispatches \
+            -d '{"ref":"main"}'
