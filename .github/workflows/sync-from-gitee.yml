@@ -29,6 +29,7 @@ jobs:
         run: |
           cd repo.git
           git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${GH_REPO}.git"
+          git config remote.origin.mirror false
           PUSH_OUTPUT="$(git push origin +refs/heads/main:refs/heads/main 2>&1)" || { echo "$PUSH_OUTPUT"; exit 1; }
           echo "$PUSH_OUTPUT"
           if echo "$PUSH_OUTPUT" | grep -q "Everything up-to-date"; then
