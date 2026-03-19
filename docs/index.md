@@ -16,7 +16,7 @@
 **我们的目标**：做电力系统安全分析方向最好的中文网站。
 
 !!! info "当前阶段说明"
-    当前仓库以「协作框架 + 内容模板 + 贡献指南」为主，部分案例页面为占位页，内容持续补充中。
+    当前仓库处于协作启动阶段，现有事故页均为占位稿，内容待持续补充完善。
 
 ---
 
@@ -28,7 +28,7 @@
 
     ---
 
-    - [2003年美加大停电](incidents/2003-us-canada/index.md) - 影响5500万人的世纪大停电
+    - [2003年美加大停电](incidents/2003-us-canada/index.md)（占位） - 待完善
     - [1965年美国东北大停电](incidents/1965-us-northeast/index.md)（待收录） - 占位页，欢迎认领完善
 
 -   :material-lightning-bolt:{ .lg .middle } **欧洲地区**
@@ -42,7 +42,7 @@
 
     ---
 
-    - [2012年印度大停电](incidents/2012-india/index.md)（待收录） - 占位页，欢迎认领完善
+    - [2012年印度大停电](incidents/2012-india/index.md)（占位） - 待完善
 
 -   :material-plus-circle:{ .lg .middle } **更多案例**
 
@@ -98,4 +98,3 @@
   <h3 style="margin: 0; color: white;">🎓 献礼上海交通大学 130 周年校庆</h3>
   <p style="margin: 0.5rem 0 0 0; opacity: 0.9;">2026年4月6日</p>
 </div>
-
