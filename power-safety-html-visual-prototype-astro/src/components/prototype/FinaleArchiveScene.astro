@@ -1,0 +1,45 @@
+---
+import type { PrototypeEvent } from "../../data/prototype";
+
+interface Props {
+  events: PrototypeEvent[];
+}
+
+const { events } = Astro.props;
+---
+
+<section class="prototype-section archive-scene" id="finaleC" data-prototype-section data-title="档案总览">
+  <div class="archive-shell">
+    <div class="archive-heading">
+      <div class="finale-divider reveal" style="--delay: 0.05s"></div>
+      <p class="archive-lead reveal" style="--delay: 0.18s">翻开档案，回看那些被黑暗吞没的时刻。</p>
+    </div>
+
+    <div class="archive-grid" id="archiveGrid">
+      {events.map((event, index) => (
+        <button
+          type="button"
+          class="archive-card"
+          data-open-archive
+          data-event-id={event.id}
+          style={`--card-delay:${0.08 + index * 0.06}s`}
+        >
+          <span class="ac-year">{event.year}</span>
+          <h3>{event.title}</h3>
+          <p class="ac-loc">{event.location}</p>
+        </button>
+      ))}
+    </div>
+
+    <footer class="site-footer">
+      <p>电力系统安全分析课程组 · 上海交通大学电气工程学院</p>
+      <p class="sub">基于 Power_safty.html 视觉原型拆分为 Astro 工程结构</p>
+      <div class="footer-divider"></div>
+      <div class="footer-motto">
+        <span>铭记黑暗，守护光明</span>
+        <span class="footer-motto-sep"></span>
+        <span>Light fades. Memory endures.</span>
+      </div>
+    </footer>
+  </div>
+</section>

@@ -1,0 +1,44 @@
+---
+import type { ActMeta } from "../../data/prototype";
+import { eventsByAct } from "../../data/prototype";
+import EventCard from "./EventCard.astro";
+
+interface Props {
+  act: ActMeta;
+}
+
+const { act } = Astro.props;
+const eventList = eventsByAct(act.act);
+---
+
+<section
+  class="prototype-section act-scene"
+  id={act.sectionId}
+  data-prototype-section
+  data-title={`第${act.act}幕 · ${act.title}`}
+>
+  <div class="scene-map scene-map--subtle"></div>
+
+  <div class="act-shell">
+    <div class="act-label reveal" style="--delay: 0.05s">
+      <span class="act-label-line"></span>
+      <span>Act {act.act}</span>
+      <span class="act-label-line"></span>
+    </div>
+
+    <div class="act-heading reveal" style="--delay: 0.16s">
+      <h2>{act.title}</h2>
+      <p class="en">{act.subtitle}</p>
+      <p class="desc">{act.theme}</p>
+    </div>
+
+    <div class={`cards-grid cards-${Math.min(Math.max(eventList.length, 2), 4)}`}>
+      {eventList.map((event) => <EventCard event={event} />)}
+    </div>
+
+    <div class="sjtu-whisper reveal" style="--delay: 0.28s">
+      <div class="sjtu-whisper-line"></div>
+      <p>{act.whisper}</p>
+    </div>
+  </div>
+</section>

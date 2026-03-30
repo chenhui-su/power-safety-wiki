@@ -1,0 +1,24 @@
+---
+import { sectionMeta } from "../../data/prototype";
+---
+
+<nav class="progress-bar" id="progressBar" aria-label="章节进度">
+  {sectionMeta.map((section, index) => (
+    <button
+      type="button"
+      class:list={["progress-dot", index === 0 && "is-active"]}
+      data-progress-index={index}
+      aria-label={section.title}
+    ></button>
+  ))}
+</nav>
+
+<nav class="chapter-nav" id="chapterNav" aria-label="章节切换">
+  <button type="button" class="nav-button" data-nav-prev>
+    <span>上一章</span>
+  </button>
+  <span class="chapter-label" id="chapterLabel">{sectionMeta[0]?.title}</span>
+  <button type="button" class="nav-button nav-button--next" data-nav-next>
+    <span>下一章</span>
+  </button>
+</nav>

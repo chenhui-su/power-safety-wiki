@@ -1,0 +1,34 @@
+---
+import WorldMap from "./WorldMap.astro";
+
+interface Props {
+  copy: {
+    eyebrow: string;
+    dedication: string;
+    title: string;
+    slogan: string;
+    sloganEn: string;
+  };
+}
+
+const { copy } = Astro.props;
+---
+
+<section class="prototype-section is-active hero-scene" id="hero" data-prototype-section data-title="序章">
+  <div class="scene-map scene-map--hero">
+    <WorldMap className="world-map-svg" landClass="world-map-land world-map-land--hero" />
+  </div>
+
+  <div class="hero-content">
+    <p class="hero-course reveal" style="--delay: 0.05s">{copy.eyebrow}</p>
+    <div class="hero-divider reveal" style="--delay: 0.15s"></div>
+    <p class="hero-dedication reveal" style="--delay: 0.25s">{copy.dedication}</p>
+    <h1 class="hero-title reveal" style="--delay: 0.4s">{copy.title}</h1>
+    <p class="hero-slogan reveal" style="--delay: 0.55s">{copy.slogan}</p>
+    <p class="hero-slogan-en reveal" style="--delay: 0.7s">{copy.sloganEn}</p>
+
+    <button type="button" class="hero-enter-btn reveal" style="--delay: 0.9s" data-next-section>
+      <span>进入档案库</span>
+    </button>
+  </div>
+</section>

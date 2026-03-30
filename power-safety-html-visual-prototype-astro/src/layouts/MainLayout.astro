@@ -1,0 +1,26 @@
+---
+import "../styles/prototype.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "全球大停电事故档案库 | HTML 视觉原型拆分版",
+  description = "基于 Power_safty.html 视觉原型拆分到 Astro 的第一版工程骨架。",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

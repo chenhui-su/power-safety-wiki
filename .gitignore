@@ -50,6 +50,11 @@ local_settings.py
 .env
 .env.local
 
+# Node / Astro
+node_modules/
+dist/
+.astro/
+
 # 测试覆盖率
 htmlcov/
 .coverage

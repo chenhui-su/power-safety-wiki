@@ -1,0 +1,19 @@
+---
+interface Props {
+  id: string;
+  title: string;
+  subtitle: string;
+  note: string;
+}
+
+const { id, title, subtitle, note } = Astro.props;
+---
+
+<section class="prototype-section finale-scene" id={id} data-prototype-section data-title="尾声">
+  <div class="finale-quote">
+    <div class="finale-divider reveal" style="--delay: 0.05s"></div>
+    <h2 class="reveal" style="--delay: 0.16s">{title}</h2>
+    <p class="finale-subtitle reveal" style="--delay: 0.28s">{subtitle}</p>
+    <p class="finale-note reveal" style="--delay: 0.4s">{note}</p>
+  </div>
+</section>

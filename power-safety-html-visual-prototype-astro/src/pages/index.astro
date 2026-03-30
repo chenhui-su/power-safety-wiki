@@ -1,0 +1,49 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import ArchiveOverlay from "../components/prototype/ArchiveOverlay.astro";
+import PrototypeChrome from "../components/prototype/PrototypeChrome.astro";
+import HeroScene from "../components/prototype/HeroScene.astro";
+import EmpathyScene from "../components/prototype/EmpathyScene.astro";
+import GlobalMapScene from "../components/prototype/GlobalMapScene.astro";
+import ActScene from "../components/prototype/ActScene.astro";
+import FinaleMessageScene from "../components/prototype/FinaleMessageScene.astro";
+import FinaleArchiveScene from "../components/prototype/FinaleArchiveScene.astro";
+import scriptUrl from "../scripts/prototype-client.ts?url";
+import { acts, archiveDetails, events, heroCopy, sectionMeta } from "../data/prototype";
+
+const payload = JSON.stringify({
+  sectionIds: sectionMeta.map((item) => item.id),
+  events,
+  archiveDetails,
+}).replace(/</g, "\\u003c");
+---
+
+<MainLayout>
+  <div class="noise-overlay" aria-hidden="true"></div>
+  <PrototypeChrome />
+
+  <main class="prototype-stage">
+    <HeroScene copy={heroCopy} />
+    <EmpathyScene />
+    <GlobalMapScene events={events} />
+    {acts.map((act) => <ActScene act={act} />)}
+    <FinaleMessageScene
+      id="finaleA"
+      title="每一次停电，都不只是一次故障"
+      subtitle="也是一段值得被记录、分析和反思的历史。"
+      note="Record the blackout. Understand the system."
+    />
+    <FinaleMessageScene
+      id="finaleB"
+      title="而此刻，站在这里的"
+      subtitle="是正在继续书写这份档案的我们。"
+      note="The archive is still being written."
+    />
+    <FinaleArchiveScene events={events} />
+  </main>
+
+  <ArchiveOverlay />
+
+  <script id="prototype-payload" type="application/json" set:html={payload}></script>
+  <script type="module" src={scriptUrl}></script>
+</MainLayout>

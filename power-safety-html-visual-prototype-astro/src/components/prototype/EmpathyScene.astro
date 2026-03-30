@@ -1,0 +1,35 @@
+---
+import { empathyStats } from "../../data/prototype";
+import WorldMap from "./WorldMap.astro";
+---
+
+<section class="prototype-section empathy-scene" id="empathy" data-prototype-section data-title="停电时刻">
+  <div class="scene-map scene-map--empathy">
+    <WorldMap className="world-map-svg" landClass="world-map-land world-map-land--empathy" />
+  </div>
+
+  <div class="empathy-blackout" data-empathy-blackout></div>
+
+  <div class="empathy-copy" data-empathy-copy>
+    <p class="section-kicker reveal" style="--delay: 0.1s">停电不是抽象概念</p>
+    <h2 class="empathy-title reveal" style="--delay: 0.22s">它会让城市失去节奏，让时间忽然变重。</h2>
+    <p class="empathy-subtitle reveal" style="--delay: 0.34s">
+      当照明、通信、交通和供暖一起退出，电网脆弱性就不再只是课本里的术语。
+    </p>
+  </div>
+
+  <div class="empathy-dark-text" data-empathy-dark-text>
+    <p>这就是大停电真正让人记住的部分。</p>
+    <p>不是数字，而是突然到来的黑暗。</p>
+  </div>
+
+  <div class="stats-row" data-empathy-stats>
+    {empathyStats.map((stat) => (
+      <div class="stat-item">
+        <span class="stat-label">{stat.label}</span>
+        <strong class="stat-number">{stat.value}</strong>
+        <span class="stat-unit">{stat.unit}</span>
+      </div>
+    ))}
+  </div>
+</section>

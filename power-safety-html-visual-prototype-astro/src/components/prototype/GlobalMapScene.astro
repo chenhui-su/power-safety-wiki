@@ -1,0 +1,75 @@
+---
+import type { PrototypeEvent } from "../../data/prototype";
+import { projectPoint } from "../../data/prototype";
+import WorldMap from "./WorldMap.astro";
+
+interface Props {
+  events: PrototypeEvent[];
+}
+
+const { events } = Astro.props;
+const markers = events.map((event, index) => ({
+  event,
+  index,
+  point: projectPoint(event.coordinates),
+}));
+const currentEvent = events[0];
+---
+
+<section class="prototype-section map-scene" id="globalmap" data-prototype-section data-title="黑暗版图">
+  <div class="map-container">
+    <div class="map-header reveal" style="--delay: 0.05s">
+      <span class="mono">1965 — 2025</span>
+      <h2>黑暗版图</h2>
+    </div>
+
+    <div class="map-shell reveal" style="--delay: 0.18s">
+      <div class="map-toolbar">
+        <button type="button" class="map-tool-btn" data-map-replay>重新回放</button>
+      </div>
+
+      <WorldMap className="world-map-svg world-map-svg--interactive" showGrid={true}>
+        <g class="prototype-map-markers">
+          {markers.map(({ event, index, point }) => (
+            <g
+              class:list={["prototype-map-marker", index === 0 && "is-active"]}
+              transform={`translate(${point.x} ${point.y})`}
+              tabindex="0"
+              role="button"
+              data-map-marker
+              data-map-index={index}
+              data-event-id={event.id}
+              aria-label={`${event.year}年 ${event.title}`}
+            >
+              <circle class="prototype-map-marker__halo" r="14"></circle>
+              <circle class="prototype-map-marker__dot" r="4"></circle>
+              <text class="prototype-map-marker__label" x="8" y="-8">{event.year}</text>
+            </g>
+          ))}
+        </g>
+      </WorldMap>
+    </div>
+
+    <div class="map-overlay-card reveal" style="--delay: 0.3s">
+      <div class="map-info">
+        <div class="map-info-year" data-map-year>{currentEvent.dateLabel}</div>
+        <h3 data-map-title>{currentEvent.title}</h3>
+        <p data-map-hook>{currentEvent.hook}</p>
+      </div>
+      <div class="map-status-chip" data-map-status>等待进入本章</div>
+    </div>
+
+    <div class="map-legend reveal" style="--delay: 0.38s">
+      <span class="map-legend-item"><span class="map-legend-dot"></span>当前聚焦事故</span>
+      <span class="map-legend-item"><span class="map-legend-dot dim"></span>章节内可点击查看详情</span>
+    </div>
+
+    <div class="map-timeline reveal" style="--delay: 0.46s">
+      <div class="map-timeline-fill" data-map-timeline-fill></div>
+    </div>
+    <div class="map-timeline-labels reveal" style="--delay: 0.52s">
+      <span>1965</span>
+      <span>2025</span>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,32 @@
+---
+import type { PrototypeEvent } from "../../data/prototype";
+
+interface Props {
+  event: PrototypeEvent;
+}
+
+const { event } = Astro.props;
+---
+
+<button
+  type="button"
+  class:list={["event-card", event.status === "latest" && "latest"]}
+  data-open-archive
+  data-event-id={event.id}
+>
+  <div class="card-code">{event.titleEn}</div>
+  <div class="card-date">{event.dateLabel}</div>
+  <h3>{event.title}</h3>
+  <p class="card-quote">“{event.hook}”</p>
+  <div class="card-meta">
+    <span>{event.location}</span>
+    <span class="card-meta-sep"></span>
+    <span>{event.affectedLabel}</span>
+  </div>
+  {event.status === "latest" && (
+    <div class="pulse-badge">
+      <span class="pulse-dot"></span>
+      <span class="pulse-text">持续更新中</span>
+    </div>
+  )}
+</button>

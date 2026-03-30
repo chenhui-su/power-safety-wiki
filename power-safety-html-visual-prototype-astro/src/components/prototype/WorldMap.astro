@@ -1,0 +1,36 @@
+---
+import { continentPaths } from "../../data/worldCoastline";
+
+interface Props {
+  className?: string;
+  landClass?: string;
+  showGrid?: boolean;
+}
+
+const {
+  className = "",
+  landClass = "world-map-land",
+  showGrid = false,
+} = Astro.props;
+---
+
+<svg class={className} viewBox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+  <rect class="world-map-backdrop" width="1000" height="500"></rect>
+
+  {showGrid && (
+    <g class="world-map-grid">
+      {Array.from({ length: 7 }, (_, index) => (
+        <line x1="0" y1={(500 / 6) * index} x2="1000" y2={(500 / 6) * index}></line>
+      ))}
+      {Array.from({ length: 13 }, (_, index) => (
+        <line x1={(1000 / 12) * index} y1="0" x2={(1000 / 12) * index} y2="500"></line>
+      ))}
+    </g>
+  )}
+
+  <g class="world-map-continents">
+    {continentPaths.map((path) => <path d={path} class={landClass}></path>)}
+  </g>
+
+  <slot />
+</svg>
